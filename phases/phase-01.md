@@ -12,6 +12,8 @@ A fork is your own copy of someone else's GitHub repository. We use a fork so yo
 
 1. Make sure Python is installed on your computer and your GitHub account is ready in your browser.
 
+All Python solution files for this capstone should be saved inside the `solutions/` folder.
+
 2. Open the [capstone repository](https://github.com/warestack/bda-capstone-1) in a new tab and return here.
 
 3. Fork the repository to your own GitHub account.
@@ -54,10 +56,10 @@ Windows PowerShell:
 
 ```powershell
 python -m venv .venv
-.venv\Scripts\Activate.ps1
+.\.venv\Scripts\Activate.ps1
 ```
 
-> Optional temporary PowerShell bypass (current session only): `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` Then run: `.venv\Scripts\Activate.ps1`
+> Optional temporary PowerShell bypass (current session only): `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` Then run: `.\.venv\Scripts\Activate.ps1`
 
 8. Install the dependencies in the `requirements.txt`.
 
@@ -70,7 +72,7 @@ pip install -r requirements.txt
 ```python
 import yt_dlp
 
-print("Import successfully")
+print("Import successful")
 ```
 
 Run the test:
@@ -95,4 +97,4 @@ Before moving to Phase 02, confirm that:
 - You are in the correct folder (`bda-capstone-1`)
 - Your virtual environment is activated.
 - The dependencies were installed without errors.
-- `python solutions/test_yt_dlp.py` prints `Import successfully`.
+- `python solutions/test_yt_dlp.py` prints `Import successful`.

@@ -65,7 +65,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-9. Create a simple test file called `solutions/test_library.py` to check that `yt-dlp` installed correctly.
+9. Create a simple test file called `solutions/test_yt_dlp.py` to check that `yt-dlp` installed correctly.
 
 ```python
 import yt_dlp
@@ -76,7 +76,7 @@ print("Import successfully")
 Run the test:
 
 ```bash
-python solutions/test_library.py
+python solutions/test_yt_dlp.py
 ```
 
 ## Checkpoint
@@ -95,4 +95,4 @@ Before moving to Phase 02, confirm that:
 - You are in the correct folder (`bda-capstone-1`)
 - Your virtual environment is activated.
 - The dependencies were installed without errors.
-- `python solutions/test_library.py` prints `Import successfully`.
+- `python solutions/test_yt_dlp.py` prints `Import successfully`.

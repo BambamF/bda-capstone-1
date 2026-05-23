@@ -8,7 +8,8 @@ Path("videos").mkdir(exist_ok=True)
 
 def download_video(url):
     ydl_options = {
-        "outtmpl" : "videos/%(title)s.%(ext)s"
+        "outtmpl" : "videos/%(title)s.%(ext)s",
+        "socket_timeout": 30,
     }
 
     with yt_dlp.YoutubeDL(ydl_options) as ydl:
@@ -44,3 +45,42 @@ def multi_csv(csv_path, md_path):
                 print(f"Parallel execution: {parallel_time:.2f}")
                 mdp.write(f"Parallel download time: {parallel_time:.2f}, Time Complexity: O(logn), Space Complexity: O(n)"+"\n")
     return parallel_time
+
+def extract_video_metadata(urls):
+
+    ydl_options = {
+        "quiet" : True,
+        "skip_download" : True,
+    }
+
+    try:
+        with yt_dlp.YoutubeDL(ydl_options) as ydl:
+
+            metadata_rows = []
+            for url in urls:
+                info = ydl.extract_info(url, download=False)
+                metadata_rows.append(info)
+                print("Title:", info.get("title"))
+                print("Duration:", info.get("duration"))
+                print("Uploader:", info.get("uploader"))
+                print("Views:", info.get("view_count"))
+                print("Extension:", info.get("ext"))
+                print("URL:", url)
+
+
+
+        with open("reports/sequential_report.md", "a", newline="") as seq_rep:
+            writer = csv.DictWriter(seq_rep, fieldnames=["url", "status", "error"])
+            writer.writeheader()
+            writer.writerow({"url": url, "status": "success", "error": ""})
+
+        return metadata_rows, {"url": url, "status": "success", "error": ""}
+    except Exception as e:
+
+        with open("reports/sequential_report.md", "a", newline="") as seq_rep:
+            writer = csv.DictWriter(seq_rep, fieldnames=["url", "status", "error"])
+            writer.writeheader()
+            writer.writerow({"url": "", "status": "failed", "error": str(e)})
+
+        return None, {"url": "", "status": "failed", "error": str(e)}
+
